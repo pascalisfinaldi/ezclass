@@ -42,11 +42,19 @@ Set values in .env.local:
 
 ```env
 NEXT_PUBLIC_API_BASE_URL=
+NEXT_PUBLIC_PLACEMENT_TEST_API_URL='api/placement-test'
 ```
 
 Notes:
-- Keep it empty for same-origin requests in local development.
+- `NEXT_PUBLIC_API_BASE_URL` is optional. Keep it empty for same-origin requests in local development.
 - Use a full URL (for example https://api.example.com) when the frontend calls a different API host.
+- `NEXT_PUBLIC_PLACEMENT_TEST_API_URL` is the route prefix used by the placement test client.
+- With the example values above, requests resolve to:
+	- `api/placement-test/submit`
+	- `api/placement-test/result/:taskId`
+- If you also set `NEXT_PUBLIC_API_BASE_URL=https://api.example.com`, requests resolve to:
+	- `https://api.example.com/api/placement-test/submit`
+	- `https://api.example.com/api/placement-test/result/:taskId`
 
 ### 4. Run the app
 
@@ -98,4 +106,4 @@ Stop and restart the dev server after changing .env.local.
 
 ### API calls failing
 
-Check NEXT_PUBLIC_API_BASE_URL in .env.local and verify the target API is reachable.
+Check both `NEXT_PUBLIC_API_BASE_URL` and `NEXT_PUBLIC_PLACEMENT_TEST_API_URL` in `.env.local`, then verify the final combined API URL is reachable.
