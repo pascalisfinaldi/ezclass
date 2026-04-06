@@ -2,7 +2,7 @@ const API_BASE_URL = (process.env.NEXT_PUBLIC_API_BASE_URL ?? "").replace(/\/$/,
 
 const buildApiUrl = (path: string) => `${API_BASE_URL}${path}`;
 
-const submitPlacementTest = (answers: Record<string, string>) => fetch(buildApiUrl("/api/placement-test/submit"), {
+const submitPlacementTest = (answers: Record<string, string>) => fetch(buildApiUrl(`${process.env.NEXT_PUBLIC_PLACEMENT_TEST_API_URL}/submit`), {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
@@ -15,7 +15,7 @@ const submitPlacementTest = (answers: Record<string, string>) => fetch(buildApiU
   }),
 });
 
-const getPlacementResult = (taskId: string) => fetch(buildApiUrl(`/api/placement-test/result/${taskId}`), {
+const getPlacementResult = (taskId: string) => fetch(buildApiUrl(`${process.env.NEXT_PUBLIC_PLACEMENT_TEST_API_URL}/result/${taskId}`), {
   method: "GET",
   cache: "no-store",
 });

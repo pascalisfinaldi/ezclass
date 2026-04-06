@@ -57,7 +57,6 @@ const buildResult = (taskId: string, answers: PlacementAnswer[]): FinalPlacement
 export const createPlacementTask = (answers: PlacementAnswer[]) => {
   const taskId = createTaskId();
   const readyDelayMs = 4500 + Math.floor(Math.random() * 2500);
-  console.log('p-log readyDelayMs', readyDelayMs)
 
   const task: PlacementTask = {
     taskId,
